@@ -3,8 +3,30 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `gatsbytest`,
-    siteUrl: `https://www.yourdomain.tld`
+    title: `20k-gatsby`,
+    siteUrl: `https://20k.ca/`
   },
-  plugins: ["gatsby-plugin-sass"]
+  plugins: [
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: [`auto`, `webp`,`avif`],
+          placeholder: `dominantColor`,
+          quality: 80,
+          breakpoints: [750, 1080, 1366, 1920],
+          backgroundColor: `transparent`
+        }
+      }
+    },"gatsby-plugin-image",  "gatsby-transformer-sharp",
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        "name": "images",
+        "path": "./src/images/"
+      },
+      __key: "images"
+    },
+    "gatsby-plugin-image",
+  ]
 };
